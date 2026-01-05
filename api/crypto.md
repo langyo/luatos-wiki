@@ -212,7 +212,7 @@ log.info("hmac_sha512", crypto.hmac_sha512("abc", "1234567890"))
 
 ---
 
-## crypto.cipher_encrypt(type, padding, str, key, iv)
+## crypto.cipher_encrypt(type, padding, str, key, iv, tag)
 
 对称加密
 
@@ -225,12 +225,14 @@ log.info("hmac_sha512", crypto.hmac_sha512("abc", "1234567890"))
 |string|需要加密的数据|
 |string|密钥,需要对应算法的密钥长度|
 |string|IV值, 非ECB算法需要|
+|string|GCM模式下的tag, 可选参数, 不传则不检查tag|
 
 **返回值**
 
 |返回值类型|解释|
 |-|-|
 |string|加密后的字符串|
+|string|GCM模式下的tag值, 可选返回|
 
 **例子**
 

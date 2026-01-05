@@ -420,6 +420,34 @@ gpio.setup(gpio.WAKEUP0, function() end, gpio.PULLUP, gpio.RISING)
 
 ---
 
+## pm.keep(role_id, on_off)
+
+应用层投票强制系统保持在正常工作模式，不允许进入任何低功耗状态，只要有1个应用投票保持，就无法进入低功耗状态
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|int|role_id 应用ID，取值0~15，目前可以的值是pm.GPS，如果是其他值，则不做修改|
+|boolean|on_off true 需要系统保持在正常工作状态 false 不需要系统保持在正常工作状态|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|int|当前投票状态，如果不是0，就说明有应用投票不允许进入任何低功耗状态|
+
+**例子**
+
+```lua
+pm.keep(pm.GPS, true)    --GPS应用需要系统保持在正常工作状态
+pm.keep(pm.GPS, false)    --GPS应用不需要系统保持在正常工作状态
+local v = pm.keep(nil, true) --查询一下当前有没有应用投票不允许进入任何低功耗状态
+
+```
+
+---
+
 ## pm.chgcmd(pin, chip_id, reg, data)
 
 单总线命令读写YHM27XX

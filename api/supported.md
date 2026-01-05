@@ -18,6 +18,7 @@
 |[crypto](crypto.md)|`加解密和hash函数`|
 |[dac](dac.md)|`数模转换`|
 |[disp](disp.md)|`disp库(已废弃)`|
+|[easylvgl](easylvgl.md)|`EasyLVGL图像库 (LVGL 9.4) - 重构版本`|
 |[eink](eink.md)|`墨水屏操作库`|
 |[ercoap](ercoap.md)|`新的Coap协议解析库`|
 |[errDump](errDump.md)|`错误上报`|
@@ -66,6 +67,7 @@
 |[modbus](modbus.md)|`modbus主从协议栈协议`|
 |[mqtt](mqtt.md)|`mqtt客户端`|
 |[natp](natp.md)|`网络地址端口转换(开发中)`|
+|[ndk](ndk.md)|`在沙盒化的RV32环境中运行MiniRV32IMA镜像`|
 |[nes](nes.md)|`nes模拟器`|
 |[netdrv](netdrv.md)|`网络设备管理`|
 |[nimble](nimble.md)|`蓝牙BLE库(nimble版)`|
@@ -84,6 +86,7 @@
 |[rtc](rtc.md)|`实时时钟`|
 |[rtmp](rtmp.md)|`RTMP 直播推流`|
 |[rtos](rtos.md)|`RTOS底层操作库`|
+|[rtsp](rtsp.md)|`RTSP 直播推流`|
 |[sdio](sdio.md)|`sdio`|
 |[sensor](sensor.md)|`传感器操作库`|
 |[sfd](sfd.md)|`SPI FLASH操作库`|
@@ -102,6 +105,7 @@
 |[u8g2](u8g2.md)|`u8g2图形处理库`|
 |[uart](uart.md)|`串口操作库`|
 |[ulwip](ulwip.md)|`用户空间的lwip集成(开发中)`|
+|[usb](usb.md)|`usb操作库`|
 |[usbapp](usbapp.md)|`USB功能操作`|
 |[w5500](w5500.md)|`w5500以太网驱动`|
 |[wdt](wdt.md)|`watchdog操作库`|

@@ -13,6 +13,8 @@
 |uart.LSB|number|小端模式|
 |uart.MSB|number|大端模式|
 |uart.VUART_0|number|虚拟串口0|
+|uart.VUART_1|number|虚拟串口1|
+|uart.VUART_2|number|虚拟串口2|
 |uart.ERROR_DROP|number|遇到错误时抛弃缓存的数据|
 |uart.DEBUG|number|开启调试功能|
 

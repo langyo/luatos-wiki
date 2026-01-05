@@ -21,6 +21,7 @@ coremark
 crypto
 dac
 disp
+easylvgl
 eink
 ercoap
 errDump
@@ -69,6 +70,7 @@ mobile
 modbus
 mqtt
 natp
+ndk
 nes
 netdrv
 nimble
@@ -87,6 +89,7 @@ rsa
 rtc
 rtmp
 rtos
+rtsp
 sdio
 sensor
 sfd
@@ -105,6 +108,7 @@ tp
 u8g2
 uart
 ulwip
+usb
 usbapp
 w5500
 wdt

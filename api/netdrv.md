@@ -7,6 +7,7 @@
 |netdrv.CH390|number|南京沁恒CH390系列,支持CH390D/CH390H, SPI通信|
 |netdrv.WHALE|number|虚拟网卡|
 |netdrv.CTRL_RESET|number|控制类型-复位,当前仅支持CH390H|
+|netdrv.CTRL_UPDOWN|number|控制类型-1=启动UP，0关闭DOWN|
 |netdrv.RESET_HARD|number|请求对网卡硬复位,当前仅支持CH390H|
 |netdrv.RESET_SOFT|number|请求对网卡软复位,当前仅支持CH390H|
 |netdrv.EVT_SOCKET|number|事件类型-socket事件|
@@ -20,9 +21,9 @@
 
 |传入值类型|解释|
 |-|-|
-|int|网络适配器编号, 例如 socket.LWIP_ETH|
-|int|实现方式,如果是设备自带的硬件,那就不需要传, 外挂设备需要传,当前支持CH390H/D|
-|int|外挂方式,需要额外的参数,参考示例|
+|int|网络适配器编号, 例如 socket.LWIP_ETH, socket.LWIP_USER0|
+|int|实现方式,如果是设备自带的硬件,那就不需要传, 外挂设备需要传,当前支持CH390H/D/OPENVPN等|
+|table|外挂方式,需要额外的参数,参考示例|
 
 **返回值**
 
@@ -43,6 +44,19 @@ netdrv.dhcp(socket.LWIP_ETH, true)
 -- 支持CH390H的中断模式, 能提供响应速度, 但是需要外接中断引脚
 -- 实测对总网速没有帮助, 轻负载时能降低功耗, 让模组能进入低功耗模式
 netdrv.setup(socket.LWIP_ETH, netdrv.CH390, {spi=0,cs=8,irq=20})
+
+-- 初始化 OpenVPN 虚拟网卡 (需要通过其他网卡提供网络连接)
+-- 支持 TLS 证书认证和静态密钥认证两种模式
+local ok = netdrv.setup(socket.LWIP_USER0, netdrv.OPENVPN, {
+    ovpn_remote_ip = "vpn.example.com",          -- VPN 服务器地址
+    ovpn_remote_port = 1194,                     -- VPN 服务器端口 (默认 1194)
+    ovpn_ca_cert = ca_cert_pem_string,           -- CA 证书 (PEM 格式, 可选)
+    ovpn_client_cert = client_cert_pem_string,   -- 客户端证书 (PEM 格式, 可选)
+    ovpn_client_key = client_key_pem_string,     -- 客户端私钥 (PEM 格式, 可选)
+    ovpn_static_key = static_key_binary,         -- 静态密钥 (可选, 64 字节以内)
+})
+-- 完整示例见 openvpn/example_netdrv.lua
+-- 详细说明见 openvpn/usage.md 和 openvpn/PARAMETER_HANDLING.md
 
 ```
 
@@ -238,6 +252,10 @@ netdrv.napt(-1)
 -- 重启网卡, 仅CH390H支持, 其他网络设备暂不支持
 -- 本函数于 2025.4.14 新增
 netdrv.ctrl(socket.LWIP_ETH, netdrv.CTRL_RESET, netdrv.RESET_HARD)
+
+-- 关闭CH390H通信并下电PHY，可用于降功耗；第三个参数1=关闭，0=重新启动
+netdrv.ctrl(socket.LWIP_ETH, netdrv.CTRL_DOWN, 1)
+netdrv.ctrl(socket.LWIP_ETH, netdrv.CTRL_DOWN, 0)
 
 ```
 

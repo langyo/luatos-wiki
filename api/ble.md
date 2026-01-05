@@ -358,9 +358,10 @@ ble_device:indicate_enable({
 
 |传入值类型|解释|
 |-|-|
-|number|addr_mode 广播地址模式, 可选值: ble.PUBLIC, ble.RANDOM, ble.RPA, ble.NRPA|
-|number|scan_interval 扫描间隔, 单位为0.625ms, 最小值为20, 最大值为10240|
-|number|scan_window 扫描窗口, 单位为0.625ms, 最小值为20, 最大值为10240|
+|int|addr_mode 广播地址模式, 可选值: ble.PUBLIC, ble.RANDOM, ble.RPA, ble.NRPA|
+|int|scan_interval 扫描间隔, 单位为0.625ms, 最小值为20, 最大值为10240|
+|int|scan_window 扫描窗口, 单位为0.625ms, 最小值为20, 最大值为10240|
+|int|scan_type 扫描类型, 可选值: ble.SCAN_ACTIVE, ble.SCAN_PASSIVE, 默认 ble.SCAN_PASSIVE|
 
 **返回值**
 
@@ -373,6 +374,8 @@ ble_device:indicate_enable({
 ```lua
 -- 创建BLE扫描
 ble_device:scan_create(ble.PUBLIC, 100, 100)
+-- 注意, 创建扫描后需要调用 ble.scan_start() 才能开始扫描
+-- 2025.12.26新增参数 scan_type, 可选值: ble.SCAN_ACTIVE, ble.SCAN_PASSIVE
 
 ```
 

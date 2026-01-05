@@ -10,8 +10,10 @@ dhcpsrv
 dnsproxy
 exgnss
 exlcd
+exmodbus
 exmtn
 exnetif
+exremotecam
 exremotefile
 extp
 exvib

@@ -170,6 +170,8 @@ local luatos_version = rtos.version()
 -- 如果不是数字固件,luatos_version_num 会是0
 -- 如果是不支持的固件, luatos_version_num 会是nil
 local luatos_version, luatos_version_num = rtos.version(true)
+-- 读取底层位数, 32或者64, 2025.12.23 新增
+local luatos_version, luatos_version_num, luatos_bits = rtos.version(true)
 
 ```
 

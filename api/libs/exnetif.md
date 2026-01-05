@@ -3,11 +3,12 @@
 **示例**
 
 ```lua
-本文件的对外接口有4个：
+本文件的对外接口有5个：
 1、exnetif.set_priority_order(networkConfigs)：设置网络优先级顺序并初始化对应网络(需要在task中调用)
 2、exnetif.notify_status(cb_fnc)：设置网络状态变化回调函数
 3、exnetif.setproxy(adapter, main_adapter,other_configs)：配置网络代理实现多网融合(需要在task中调用)
 4、exnetif.check_network_status(interval),检测间隔时间ms(选填)，不填时只检测一次，填写后将根据间隔时间循环检测，会提高模块功耗
+5、exnetif.close(type, adapter)：关闭指定网卡,内核固件版本号需>=2020
 
 ```
 
@@ -260,6 +261,33 @@ exnetif.set_priority_order({
             password = "HZ88888888"
         }
     })
+
+```
+
+---
+
+## exnetif.close(type,adapter)
+
+关闭网卡功能。(内核固件版本号需>=2020)
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|param|type boolean 是否为多网融合|
+|param|adapter number 需要关闭的网卡|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|操作结果|
+
+**例子**
+
+```lua
+    exnetif.close(true) --关闭多网融合功能
+    exnetif.close(false,socket.LWIP_ETH)  --关闭优先级中的以太网网卡
 
 ```
 

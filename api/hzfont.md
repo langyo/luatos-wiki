@@ -11,7 +11,7 @@ hzfont.init("/sd/font.ttf")
 
 ```
 
-## hzfont.init([ttf_path][, cache_size])
+## hzfont.init([ttf_path][, cache_size][, load_to_psram])
 
 初始化HzFont字体库
 
@@ -21,6 +21,7 @@ hzfont.init("/sd/font.ttf")
 |-|-|
 |string|ttf_path TTF字体文件路径，可选；留空则回退到内置字库（若启用）|
 |int|cache_size 可选，位图与码点缓存容量（支持常量 HZFONT_CACHE_128/256/512/1024/2048），默认 HZFONT_CACHE_256|
+|bool|load_to_psram 可选，true 时将字库整包拷贝到 PSRAM 后再解析，减少后续 IO|
 
 **返回值**
 
