@@ -138,3 +138,58 @@ sms.clearLong()
 
 ---
 
+## sms.unpack(pdu_data)
+
+PDU短信解包
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|string|pdu_data PDU格式的短信数据(hex字符串)|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|table|解包后的短信内容|
+
+**例子**
+
+```lua
+local pdu = "0491680010F50400069110102143650008024F60"
+local phone, txt, metas = sms.unpack(pdu)
+log.info("sms unpack", phone, txt, metas and json.encode(metas) or "")
+
+```
+
+---
+
+## sms.debug(enable)
+
+设置短信模块的调试模式
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|bool|enable 是否启用调试模式,true为启用,false为禁用|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|nil|无返回值|
+
+**例子**
+
+```lua
+-- 启用短信调试模式,会输出更多日志信息
+sms.debug(true)
+-- 禁用短信调试模式
+sms.debug(false)
+
+```
+
+---
+

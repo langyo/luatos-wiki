@@ -29,7 +29,8 @@ pm.power(pm.USB, true)        --USB上电初始化开始工作
 |usb.CDC_ACM|number|cdc_acm 虚拟串口类|
 |usb.AUDIO|number|audio音频类|
 |usb.CAMERA|number|摄像头类|
-|usb.HID|number|HID设备类，只支持键盘和自定义|
+|usb.HID_CM|number|HID设备类，自定义类型，用于透传数据|
+|usb.HID_KB|number|HID设备类，标准键盘，常见扫码枪|
 |usb.MSC|number|大容量存储类，也就是U盘，TF卡|
 |usb.WINUSB|number|WINUSB类，透传数据|
 |usb.EV_RX|number|有新的数据到来|
@@ -62,7 +63,7 @@ USB发送数据,目前仅限于HID和WINUSB设备,CDC-ACM虚拟串口直接使�
 
 ```lua
 -- HID上传数据
-usb.tx(0, "1234", usb.HID) -- usb hid上传0x31 0x32 0x33 0x34  + N个0
+usb.tx(0, "1234", usb.HID_KB) -- usb hid上传0x31 0x32 0x33 0x34  + N个0
 
 ```
 
@@ -222,7 +223,7 @@ pm.power(pm.USB, true)
 |传入值类型|解释|
 |-|-|
 |int|usb总线id,默认0,如果芯片只有1条USB线,填0|
-|int|设备类,从机模式支持usb.CDC_ACM,usb.HID,usb.MSC,usb.WINUSB,主机模式支持usb.CAMERA|
+|int|设备类,从机模式支持usb.CDC_ACM,usb.HID_CM,usb.HID_KB,usb.MSC,usb.WINUSB,主机模式不需要配置|
 |int|数量,目前只有从机的usb.CDC_ACM允许至多3个,其他只允许1个,超过时会强制改成所允许的最大值|
 
 **返回值**
@@ -237,6 +238,8 @@ pm.power(pm.USB, true)
 pm.power(pm.USB, false)
 usb.add_class(0, usb.CDC_ACM, 3)    --使用3个CDC-ACM虚拟串口功能
 usb.add_class(0, usb.WINUSB, 1)        --使用1个WINUSB功能
+usb.add_class(0, usb.HID_CM, 1)        --使用1个自定义HID功能
+usb.add_class(0, usb.HID_KB, 1)        --使用1个标准键盘功能
 pm.power(pm.USB, true)
 
 ```
