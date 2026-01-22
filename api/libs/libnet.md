@@ -144,3 +144,28 @@
 
 ---
 
+## libnet.ping(id, ip, timeout, len)
+
+阻塞发起PING请求，可在sys.taskInit创建的任务中使用
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|number|网络适配器编号，例如socket.LWIP_ETH，必需|
+|string|要ping的目标ip地址，必需|
+|int|超时时间，可选，单位毫秒，默认5000ms|
+|number|ping包大小，可选，默认128字节|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|ping成功返回true，失败或超时返回false|
+
+**例子**
+
+无
+
+---
+

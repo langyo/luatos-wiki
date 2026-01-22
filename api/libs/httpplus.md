@@ -29,6 +29,8 @@
 -- 支持 bodyfile 直接把文件内容作为body上传
 -- 支持 上传时使用自定义缓冲区, 2025.9.25 新增
 
+-- 注意注意!!! 上传文件期间, 不能修改文件的内容,大小等属性,否则导致上传失败!!!
+
 ```
 
 ## httpplus.request(opts)
@@ -64,8 +66,12 @@ local opts = {
     adapter = nil,    -- 可选,网络适配器编号, 默认是自动选
     timeout = 30,     -- 可选,读取服务器响应的超时时间,单位秒,默认30
     bodyfile = "xxx", -- 可选,直接把文件内容作为body上传, 优先级高于body参数
-    upload_file_buff = zbuff.create(1024*64) -- 可选,上传时使用的缓冲区,默认会根据型号创建一个buff
-}
+    upload_file_buff = zbuff.create(1024*64), -- 可选,上传时使用的缓冲区,默认会根据型号创建一个buff
+    server_cert = nil, -- 可选,HTTPS服务器证书内容,PEM格式字符串
+    client_cert = nil, -- 可选,HTTPS客户端证书内容,PEM格式字符串
+    client_key  = nil, -- 可选,HTTPS客户端私钥内容,PEM格式字符串
+    client_password = nil, -- 可选,HTTPS客户端私钥密码,字符串
+    }
 
 local code, resp = httpplus.request({url="https://httpbin.air32.cn/get"})
 log.info("http", code)

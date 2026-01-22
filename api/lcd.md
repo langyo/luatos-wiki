@@ -30,6 +30,7 @@
 |lcd.font_opposansm22_chinese|font|22号中文字体|
 |lcd.font_opposansm24_chinese|font|24号中文字体|
 |lcd.font_opposansm32_chinese|font|32号中文字体|
+|lcd.font_zfull_r16_chinese|font|16号中文字体|
 |lcd.direction_0|int|0°方向命令|
 |lcd.direction_90|int|90°方向命令|
 |lcd.direction_180|int|180°方向命令|

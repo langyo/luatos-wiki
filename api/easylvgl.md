@@ -64,7 +64,7 @@
 
 ## easylvgl.indev_bind_touch(tp_cfg)
 
-* 绑定触摸输入配置到 BK7258 平台
+* 绑定触摸输入配置到 LuatOS 平台
 
 **参数**
 

@@ -10,14 +10,16 @@
         3. 使用前请确保网络连接正常，能够访问到目标摄像头
 
     使用exremotecam库时，需要按照以下顺序加载模块：
-        require "dhcam" -- 首先加载具体型号的摄像头功能模块（如大华dhcam）
-        require "exremotecam" -- 然后加载exremotecam主模块
+        local dhcam = require "dhcam" -- 首先加载具体型号的摄像头功能模块（如大华dhcam）
+        local exremotecam = require "exremotecam" -- 然后加载exremotecam主模块
 
+
+local dhcam = require "dhcam"
 local exremotecam = require "exremotecam"
 
 -- OSD文字显示参数配置表
 local osd_param = {
-    brand = "Dhua",  -- 摄像头品牌，当前仅支持"Dhua"(大华)
+    brand = "dhcam",  -- 摄像头品牌，当前仅支持"dhcam"(大华)
     host = "192.168.1.108",  -- 摄像头/NVR的IP地址
     channel = 0,  -- 摄像头通道号
     text = "行1|行2|行3",  -- OSD文本内容，需用竖线分隔，格式如"1111|2222|3333|4444"
@@ -27,7 +29,7 @@ local osd_param = {
 
 -- 拍照功能参数配置表
 local photo_param = {
-    brand = "Dhua",  -- 摄像头品牌，当前仅支持"Dhua"(大华)
+    brand = "dhcam",  -- 摄像头品牌，当前仅支持"dhcam"(大华)
     host = "192.168.1.108",  -- 摄像头/NVR的IP地址
     channel = 0  -- 摄像头通道号
 }
@@ -38,8 +40,6 @@ function camera_start()
     -- 设置摄像头OSD文字显示
     log.info("开始设置OSD显示")
     exremotecam.osd(osd_param)
-    
-    sys.wait(1000) -- 等待OSD设置完成
     
     -- 控制摄像头拍照，若SD卡可用，则图片保存为/sd/1.jpeg
     log.info("开始拍照操作")
@@ -72,7 +72,7 @@ sys.taskInit(camera_start)
 
 |返回值类型|解释|
 |-|-|
-|number|返回值|
+|boolean|返回值|
 
 **例子**
 

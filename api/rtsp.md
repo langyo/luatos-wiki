@@ -339,6 +339,111 @@ print("已发送RTP包数:", stats.rtp_packets_sent)
 
 ---
 
+## rtsp:setTransportMode(mode)
+
+设置RTP传输模式
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|string|mode 传输模式: "udp", "tcp", "udp_fec"|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|成功返回true，失败返回false|
+
+**例子**
+
+```lua
+-- 使用TCP传输模式（适合外网）
+rtsp:setTransportMode("tcp")
+-- 使用UDP传输模式（适合局域网，默认）
+rtsp:setTransportMode("udp")
+-- 使用UDP+FEC传输模式（平衡方案）
+rtsp:setTransportMode("udp_fec")
+
+```
+
+---
+
+## rtsp:getNetworkStats()
+
+获取网络质量统计信息
+
+**参数**
+
+无
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|table|网络统计信息，包含:|
+
+**例子**
+
+无
+
+---
+
+## rtsp:setNetworkStatsCallback(func)
+
+设置网络统计回调函数
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|function|func 回调函数，参数为统计信息table|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|成功返回true，失败返回false|
+
+**例子**
+
+```lua
+rtsp:setNetworkStatsCallback(function(stats)
+    print("丢包率:", stats.packet_loss_rate)
+    print("延迟:", stats.rtt_ms)
+end)
+
+```
+
+---
+
+## rtsp:setFECParam(param, value)
+
+设置FEC参数
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|string|param 参数名称: "redundancy"|
+|number|value 参数值 (redundancy: 0-100)|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|成功返回true，失败返回false|
+
+**例子**
+
+```lua
+-- 设置FEC冗余度为30%
+rtsp:setFECParam("redundancy", 30)
+
+```
+
+---
+
 ## rtsp:destroy()
 
 销毁RTSP上下文，释放所有资源

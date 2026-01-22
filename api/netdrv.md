@@ -197,7 +197,7 @@ netdrv.napt(-1)
 **例子**
 
 ```lua
--- 注意, 本函数仅支持读取, 而且不能ip状态, 即是否能联网
+-- 注意, 本函数仅支持读取, 而且不代表ip状态, 即是否能联网
 
 ```
 
@@ -223,6 +223,10 @@ netdrv.napt(-1)
 
 ```lua
 -- 注意, 本函数仅支持读取, 即判断是否能通信, 不代表IP状态
+-- 当id传-1时, 会返回一个位掩码, 每一位代表一个网卡的ready状态
+-- 例如有4个网卡, 那么返回值0b00001101就代表0号,2号网卡ready,1号,3号网卡不ready
+local ready, netstat = netdrv.ready(-1)
+log.info("netdrv", ready, "netstat", string.format("0x%X", netstat))
 
 ```
 
