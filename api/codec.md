@@ -143,6 +143,61 @@ codec.encode(amr_coder, inbuf, outbuf, codec.AMR_)
 
 ---
 
+## codec.dtmf_decode(pcm, sample_rate, opts)
+
+DTMF 解码
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|string/zbuff/table|PCM16LE 数据或样本表|
+|int|采样率(Hz),默认8000|
+|table|可选配置|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|string|解码到的DTMF序列|
+|table|事件列表|
+
+**例子**
+
+```lua
+local seq, events = codec.dtmf_decode(pcm, 8000, {frameMs = 40, stepMs = 40})
+
+```
+
+---
+
+## codec.dtmf_encode(seq, sample_rate, opts)
+
+DTMF 编码
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|string|DTMF字符串,支持 0-9 A-D * #|
+|int|采样率(Hz),默认8000|
+|table|可选配置|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|zbuff|PCM16LE数据|
+
+**例子**
+
+```lua
+local pcm = codec.dtmf_encode("123#", 8000, {toneMs = 100, pauseMs = 50, amplitude = 0.7})
+
+```
+
+---
+
 ## codec.release(coder)
 
 释放编解码用的coder

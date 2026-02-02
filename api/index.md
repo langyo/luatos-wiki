@@ -8,6 +8,7 @@ supported
 adc
 airlink
 airtalk
+airui
 antbot
 audio
 bit64
@@ -21,7 +22,6 @@ coremark
 crypto
 dac
 disp
-easylvgl
 eink
 ercoap
 errDump

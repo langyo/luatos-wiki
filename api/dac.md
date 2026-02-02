@@ -1,6 +1,6 @@
 # dac - 数模转换
 
-## dac.open(ch, freq, mode)
+## dac.open(ch, freq, bits, dac_chl)
 
 打开DAC通道,并配置参数
 
@@ -10,7 +10,8 @@
 |-|-|
 |int|通道编号,例如0|
 |int|输出频率,单位hz|
-|int|模式,默认为0,预留|
+|int|深度,默认为16|
+|int|通道选择,默认为0, 0:左声道, 1:右声道, 2:左右声道|
 
 **返回值**
 
@@ -22,7 +23,7 @@
 **例子**
 
 ```lua
-if dac.open(0, 44000) then
+if dac.open(0, 44000, 16, 0) then
     log.info("dac", "dac ch0 is opened")
 end
 
@@ -46,7 +47,7 @@ end
 
 |返回值类型|解释|
 |-|-|
-|true|成功返回true,否则返回false|
+|boolean|true 成功返回true,否则返回false|
 |int|底层返回值,调试用|
 
 **例子**

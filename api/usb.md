@@ -32,7 +32,6 @@ pm.power(pm.USB, true)        --USB上电初始化开始工作
 |usb.HID_CM|number|HID设备类，自定义类型，用于透传数据|
 |usb.HID_KB|number|HID设备类，标准键盘，常见扫码枪|
 |usb.MSC|number|大容量存储类，也就是U盘，TF卡|
-|usb.WINUSB|number|WINUSB类，透传数据|
 |usb.EV_RX|number|有新的数据到来|
 |usb.EV_TX|number|所有数据都已发送|
 |usb.EV_CONNECT|number|usb从机已经连接上并且枚举成功|
@@ -43,7 +42,7 @@ pm.power(pm.USB, true)        --USB上电初始化开始工作
 
 ## usb.tx(id, data, class)
 
-USB发送数据,目前仅限于HID和WINUSB设备,CDC-ACM虚拟串口直接使用串口API操作
+USB发送数据,目前仅限于HID设备,CDC-ACM虚拟串口直接使用串口API操作
 
 **参数**
 
@@ -90,7 +89,7 @@ buff形式读接收到的数据，一次读出全部数据存入buff中，如果
 **例子**
 
 ```lua
-usb.rx(0, buff, usb.HID)
+usb.rx(0, buff, usb.HID_CM)
 
 ```
 
@@ -223,7 +222,7 @@ pm.power(pm.USB, true)
 |传入值类型|解释|
 |-|-|
 |int|usb总线id,默认0,如果芯片只有1条USB线,填0|
-|int|设备类,从机模式支持usb.CDC_ACM,usb.HID_CM,usb.HID_KB,usb.MSC,usb.WINUSB,主机模式不需要配置|
+|int|设备类,从机模式支持usb.CDC_ACM,usb.HID_CM,usb.HID_KB,usb.MSC,主机模式不需要配置|
 |int|数量,目前只有从机的usb.CDC_ACM允许至多3个,其他只允许1个,超过时会强制改成所允许的最大值|
 
 **返回值**
@@ -237,7 +236,6 @@ pm.power(pm.USB, true)
 ```lua
 pm.power(pm.USB, false)
 usb.add_class(0, usb.CDC_ACM, 3)    --使用3个CDC-ACM虚拟串口功能
-usb.add_class(0, usb.WINUSB, 1)        --使用1个WINUSB功能
 usb.add_class(0, usb.HID_CM, 1)        --使用1个自定义HID功能
 usb.add_class(0, usb.HID_KB, 1)        --使用1个标准键盘功能
 pm.power(pm.USB, true)
@@ -268,7 +266,8 @@ pm.power(pm.USB, true)
 pm.power(pm.USB, false)
 usb.clear_all_class(0)                --清除掉之前配置的设备类
 usb.add_class(0, usb.CDC_ACM, 3)    --使用3个CDC-ACM虚拟串口功能
-usb.add_class(0, usb.WINUSB, 1)        --使用1个WINUSB功能
+usb.add_class(0, usb.HID_CM, 1)        --使用1个自定义HID功能
+usb.add_class(0, usb.HID_KB, 1)        --使用1个标准键盘功能
 pm.power(pm.USB, true)
 
 ```

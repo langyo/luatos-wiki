@@ -77,3 +77,31 @@ httpsrv.stop(SERVER_PORT,nil,socket.LWIP_AP)
 
 ---
 
+## httpsrv.debug(on)
+
+设置httpsrv的调试开关
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|bool|是否打开调试信息输出|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|bool|当前调试状态，true为打开，false为关闭|
+
+**例子**
+
+```lua
+-- 打开调试信息
+httpsrv.debug(true)
+-- 关闭调试信息
+httpsrv.debug(false)
+
+```
+
+---
+

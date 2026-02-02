@@ -12,7 +12,7 @@
 
 |返回值类型|解释|
 |-|-|
-|指针|screen指针|
+|userdata|screen指针|
 
 **例子**
 
@@ -36,7 +36,7 @@ local scr = lvgl.scr_act()
 
 |返回值类型|解释|
 |-|-|
-|指针|layer指针|
+|userdata|layer指针|
 
 **例子**
 
@@ -56,7 +56,7 @@ local scr = lvgl.scr_act()
 
 |返回值类型|解释|
 |-|-|
-|指针|layer指针|
+|userdata|layer指针|
 
 **例子**
 

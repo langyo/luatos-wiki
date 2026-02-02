@@ -5,6 +5,7 @@
 |[adc](adc.md)|`模数转换`|
 |[airlink](airlink.md)|`AirLink(设备间通讯协议)`|
 |[airtalk](airtalk.md)|`设备之间，设备与PC、手机，对讲处理`|
+|[airui](airui.md)|`AIRUI图像库 (LVGL 9.4) - 重构版本`|
 |[antbot](antbot.md)|`蚂蚁链`|
 |[audio](audio.md)|`多媒体-音频`|
 |[bit64](bit64.md)|`32位系统上对64位数据的基本算术运算和逻辑运算`|
@@ -18,7 +19,6 @@
 |[crypto](crypto.md)|`加解密和hash函数`|
 |[dac](dac.md)|`数模转换`|
 |[disp](disp.md)|`disp库(已废弃)`|
-|[easylvgl](easylvgl.md)|`EasyLVGL图像库 (LVGL 9.4) - 重构版本`|
 |[eink](eink.md)|`墨水屏操作库`|
 |[ercoap](ercoap.md)|`新的Coap协议解析库`|
 |[errDump](errDump.md)|`错误上报`|

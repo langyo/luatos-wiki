@@ -1,8 +1,8 @@
-# easylvgl - EasyLVGL图像库 (LVGL 9.4) - 重构版本
+# airui - AIRUI图像库 (LVGL 9.4) - 重构版本
 
-## easylvgl.init(width, height, color_format)
+## airui.init(width, height, color_format)
 
-* 初始化 EasyLVGL
+* 初始化 AIRUI
 
 **参数**
 
@@ -22,9 +22,9 @@
 
 ---
 
-## easylvgl.deinit()
+## airui.deinit()
 
-* 反初始化 EasyLVGL
+* 反初始化 AIRUI
 
 **参数**
 
@@ -42,7 +42,7 @@
 
 ---
 
-## easylvgl.refresh()
+## airui.refresh()
 
 * 刷新 LVGL 显示（执行定时器处理）
 
@@ -62,7 +62,7 @@
 
 ---
 
-## easylvgl.indev_bind_touch(tp_cfg)
+## airui.indev_bind_touch(tp_cfg)
 
 * 绑定触摸输入配置到 LuatOS 平台
 
@@ -84,7 +84,7 @@
 
 ---
 
-## easylvgl.font_load(config)
+## airui.font_load(config)
 
 * 加载字体
 
