@@ -8,10 +8,12 @@
 |codec.WAV|number|WAV格式|
 |codec.AMR|number|AMR-NB格式，一般意义上的AMR|
 |codec.AMR_WB|number|AMR-WB格式|
-|codec.VDDA_3V3|number|codec 电压: 3.3V|
-|codec.VDDA_1V8|number|codec 电压: 1.8V|
 |codec.ULAW|number|G711 μ-law格式|
 |codec.ALAW|number|G711 A-law格式|
+|codec.OPUS|number|OPUS格式|
+|codec.OGG_OPUS|number|OGG封装OPUS格式|
+|codec.VDDA_3V3|number|codec 电压: 3.3V|
+|codec.VDDA_1V8|number|codec 电压: 1.8V|
 
 
 ## codec.create(type, isDecoder, quality)
