@@ -37,7 +37,7 @@ collectgarbage("collect")
 |string|path 镜像路径|
 |int|mem_size 可选，沙盒RAM大小，默认 8 KiB，最大 512 KiB（LUAT_NDK_MAX_RAM_SIZE）|
 |int|exchange_size 可选，交换区大小，默认 LUAT_NDK_DEFAULT_EXCHANGE_SIZE，必须小于 mem_size|
-|table|opts 可选，目前支持 {isa="rv32ima"\|"rv32imf"}|
+|table|opts 可选，目前支持 {isa="rv32ima"}|
 
 **返回值**
 
@@ -207,7 +207,7 @@ collectgarbage("collect")
 
 |返回值类型|解释|
 |-|-|
-|table|包含 mem/exchange/exchange_addr/image/running/mcause/mtval/abi_magic/abi_version/features/last_error/event_slots/isa/flen/fcsr/frm/fflags，便于判断生命周期状态和ABI能力|
+|table|包含 mem/exchange/exchange_addr/image/running/mcause/mtval/abi_magic/abi_version/features/last_error/event_slots/isa，便于判断生命周期状态和ABI能力|
 
 **例子**
 

@@ -392,7 +392,7 @@ end)
 
 ## cc.extern_source(source, is_add_record, codec_id, sample_rate, data_bits, channel_nums, is_signed)
 
-通话中附加额外的音频数据，额外音频的参数必须和通话的参数一致，否则会失败而没有任何作用
+通话中附加额外的音频数据，额外音频的数据位数和通道数必须和通话的参数一致，否则会失败而没有任何作用
 
 **参数**
 
@@ -417,6 +417,35 @@ end)
 
 ```lua
 cc.extern_source({"/test_16k.mp3"})
+
+```
+
+---
+
+## cc.input(is_record, data, is_end)
+
+通话中附加额外的音频数据以流模式播放情况下，输入未解码的音频数据
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|boolean|是否是上行数据，true是上行数据，false是下行数据, 默认true，目前只支持录音通道，所以这个参数没有用|
+|string/zbuff|输入数据，如果为空，则不输入任何数据|
+|boolean|是否是最后一帧数据，默认false|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|成功返回true,否则返回false|
+|int|实际写入的长度，如果数据为空或者写入失败，则返回0，单位字节。如果数据是zbuff形式，写入成功后会自动删除zbuff中的数据|
+|int|输入缓冲的剩余空间，单位字节|
+
+**例子**
+
+```lua
+local result, write_len, free_len = cc.input(true, data, is_end)
 
 ```
 

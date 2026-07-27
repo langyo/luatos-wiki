@@ -17,6 +17,10 @@ exmtn
 exnetif
 exremotecam
 exremotefile
+exs_adxl34x
+exs_da267
+exs_ns2520
+exs_yhm2712a
 exsip
 exsipclient
 exsipproto
@@ -29,6 +33,7 @@ lbsLoc2
 libfota
 libfota2
 libnet
+prodmeta
 udpsrv
 xmodem
 ```

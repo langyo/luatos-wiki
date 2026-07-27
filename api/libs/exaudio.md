@@ -5,6 +5,13 @@
 ```lua
 
 -- 版本更新说明
+-- 版本号：202607171800
+-- 1、更新时间：2026-07-17 18:00
+--    改造parse_audio_info，支持文件路径和缓冲数据两种方式输入
+-- 版本号：202607161030
+-- 1、更新时间：2026-07-16 10:30
+--    移除新音频框架初始化audio_v2_setup中的make_probe_id+set_default_driver操作
+--    各BSP有默认驱动，无需手动设置，特殊情况可通过exaudio.set_default_driver接口设置
 -- 版本号：202607141800
 -- 1、更新时间：2026-07-14 18:00
 --    新增codec_voltage参数控制ES8311电平
@@ -23,16 +30,17 @@
 
 ```
 
-## exaudio.parse_audio_info(file_path, codec_id)
+## exaudio.parse_audio_info(input, codec_id[, pos])
 
-@description 从音频文件解析播放信息（采样率、位宽、声道数等）
+@description 从音频文件或缓冲数据解析播放信息（采样率、位宽、声道数等）
 
 **参数**
 
 |传入值类型|解释|
 |-|-|
-|string|file_path 音频文件路径|
+|string/zbuff|input 音频文件路径（string）或二进制数据（string/zbuff）|
 |number|codec_id 编解码器ID (0=PCM, 1=WAV, 2=AMR_NB, 3=AMR_WB, 5=MP3)|
+|number|pos 可选，数据偏移位置（字节），仅传入二进制数据时有效，默认0|
 
 **返回值**
 
@@ -43,11 +51,18 @@
 **例子**
 
 ```lua
+-- 方式1：传入文件路径
 local info = exaudio.parse_audio_info("/luadb/test.mp3", 5)
 if info then
     log.info("采样率:", info.sample_rate)
     log.info("位宽:", info.data_bits)
     log.info("声道数:", info.channel_nums)
+end
+
+-- 方式2：传入缓冲数据
+local info = exaudio.parse_audio_info(buff_data, 5)
+if info then
+    log.info("采样率:", info.sample_rate)
 end
 注意：此函数仅在audio_v2模式下可用
 

@@ -6,6 +6,7 @@
 |-|-|-|
 |i2c.FAST|number|高速|
 |i2c.SLOW|number|低速|
+|i2c.STOP_DELAY|number|STOP条件前延时配置项|
 
 
 ## i2c.exist(id)
@@ -60,6 +61,35 @@ i2c初始化
 -- 初始化i2c1
 i2c.setup(1, i2c.FAST) -- id正确就一定成功
 -- 如需判断i2c id是否合法, 请使用 i2c.exist 函数
+
+```
+
+---
+
+## i2c.config(id, key, value)
+
+配置硬件I2C参数
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|int|I2C通道ID|
+|int|配置项, 例如 i2c.STOP_DELAY|
+|int|配置值|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|成功返回true|
+
+**例子**
+
+```lua
+-- SHT20 No Hold Master 模式需要ACK后至少20us才能发STOP
+i2c.setup(1)
+i2c.config(1, i2c.STOP_DELAY, 30)  -- 开启30us STOP延时
 
 ```
 

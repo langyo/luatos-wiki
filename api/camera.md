@@ -537,7 +537,7 @@ end
 
 ---
 
-## camera.set_usb_config(app_id, key, param1, param2)
+## camera.set_usb_config(app_id, key, param1, param2, param3)
 
 配置USB摄像头图像参数，根据不同的配置项的id和参数值组合，有不同的设置效果
 
