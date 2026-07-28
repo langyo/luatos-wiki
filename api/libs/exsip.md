@@ -78,6 +78,7 @@ exsip.start()
 |boolean|config.auto_answer 是否自动接听，默认 false|
 |number|config.delay_auto_answer 自动接听延迟（秒），默认 0|
 |number|config.call_timeout 拨号超时时间（秒），默认 30|
+|boolean|config.debug_sip_response 是否打印完整 SIP 服务器响应，默认 false|
 |number|config.adapter 网络适配器，nil=使用系统默认，socket.LWIP_GP=4G，socket.LWIP_STA=WiFi，socket.LWIP_ETH=以太网|
 
 **返回值**
@@ -197,6 +198,29 @@ exsip.accept()
 
 ---
 
+## exsip.progress()
+
+发送来电早期媒体响应。
+
+**参数**
+
+无
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|成功返回 true，失败返回 false|
+
+**例子**
+
+```lua
+exsip.progress()
+
+```
+
+---
+
 ## exsip.hangUp()
 
 挂断通话。
@@ -215,6 +239,32 @@ exsip.accept()
 
 ```lua
 exsip.hangUp()
+
+```
+
+---
+
+## exsip.fail(code, reason)
+
+使用指定 SIP 失败码结束尚未接听的来电。
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|number|code SIP 状态码，默认 486|
+|string|reason 原因短语|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|boolean|成功返回 true，失败返回 false|
+
+**例子**
+
+```lua
+exsip.fail(480, "Temporarily Unavailable")
 
 ```
 

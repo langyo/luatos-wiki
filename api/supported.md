@@ -52,7 +52,6 @@
 |[keyboard](keyboard.md)|`键盘矩阵`|
 |[lcd](lcd.md)|`lcd驱动模块`|
 |[lcdseg](lcdseg.md)|`段式lcd`|
-|[libcoap](libcoap.md)|`coap数据处理`|
 |[libgnss](libgnss.md)|`NMEA数据处理`|
 |[little_flash](little_flash.md)|`flash驱动 软件包(同时支持驱动nor flash和nand flash设备)`|
 |[log](log.md)|`日志库`|

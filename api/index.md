@@ -55,7 +55,6 @@ json
 keyboard
 lcd
 lcdseg
-libcoap
 libgnss
 little_flash
 log

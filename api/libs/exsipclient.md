@@ -74,6 +74,7 @@ exsipclient.start({
     codecs = {"PCMU", "PCMA"},
     ptime = 20,
     call_timeout = 30,
+    debug_sip_response = false,
     event_callback = function(event, action, payload)
         -- event 可取 lifecycle、register、call、media、message、error
         -- lifecycle: online、offline、stopped
@@ -139,7 +140,7 @@ end)
 
 ---
 
-## exsipclient.call(target)
+## exsipclient.call(target, from_number)
 
 发起外呼。
 
@@ -148,6 +149,7 @@ end)
 |传入值类型|解释|
 |-|-|
 |string|target 目标号码或 sip URI，例如 "1002" 或 "sip:1002@example.com"|
+|string|from_number 可选，本次外呼写入 From 显示名的主叫号码|
 
 **返回值**
 
@@ -158,7 +160,7 @@ end)
 **例子**
 
 ```lua
-exsipclient.call("1002")
+exsipclient.call("1002", "13800138000")
 
 ```
 
@@ -187,6 +189,29 @@ exsipclient.answer()
 
 ---
 
+## exsipclient.progress()
+
+发送 183 Session Progress + SDP，启动来电早期媒体。
+
+**参数**
+
+无
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|nil|无返回值|
+
+**例子**
+
+```lua
+exsipclient.progress()
+
+```
+
+---
+
 ## exsipclient.hangup()
 
 挂断当前通话，或拒绝当前未接来电。
@@ -205,6 +230,32 @@ exsipclient.answer()
 
 ```lua
 exsipclient.hangup()
+
+```
+
+---
+
+## exsipclient.fail(code, reason)
+
+使用指定 SIP 失败码结束尚未最终接听的来电。
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|number|code SIP 状态码，默认 486|
+|string|reason 原因短语|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|nil|无返回值|
+
+**例子**
+
+```lua
+exsipclient.fail(480, "Temporarily Unavailable")
 
 ```
 

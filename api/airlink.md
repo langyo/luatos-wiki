@@ -272,33 +272,6 @@ airlink.config(airlink.CONF_SPI_IRQ, 12)
 
 ---
 
-## airlink.sfota(path)
-
-升级从机固件
-
-**参数**
-
-|传入值类型|解释|
-|-|-|
-|string|升级文件的路径|
-
-**返回值**
-
-|返回值类型|解释|
-|-|-|
-|bool|成功返回true, 失败返回nil|
-
-**例子**
-
-```lua
--- 注意, 升级过程是异步的, 耗时1~2分钟, 注意观察日志
-airlink.sfota("/luadb/air8000s_v5.bin")
--- 注意, 升级过程中, 其他任何指令和数据都不再传输和执行!!!
-
-```
-
----
-
 ## airlink.debug(mode)
 
 调试开关
@@ -462,6 +435,33 @@ airlink.power(true)
 -- 注意, 获取之前, 需要确定airlink.ready()已经返回true
 log.info("airlink", "从机固件版本号", airlink.sver())
 
+
+```
+
+---
+
+## airlink.sfota(path)
+
+升级从机固件
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|string|升级文件的路径|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|bool|成功返回true, 失败返回nil|
+
+**例子**
+
+```lua
+-- 注意, 升级过程是异步的, 耗时1~2分钟, 注意观察日志
+airlink.sfota("/luadb/air8000s_v5.bin")
+-- 注意, 升级过程中, 其他任何指令和数据都不再传输和执行!!!
 
 ```
 
