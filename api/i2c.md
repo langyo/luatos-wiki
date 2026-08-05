@@ -218,7 +218,7 @@ i2c.writeReg(1, 0x5C, 0x01, string.char(0x00, 0xF2))
 
 ---
 
-## i2c.readReg(id, addr, reg, len)
+## i2c.readReg(id, addr, reg, len, stop)
 
 i2c读寄存器数据
 

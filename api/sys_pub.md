@@ -1177,12 +1177,22 @@ end)
 |返回参数类型|解释|
 |-|-|
 |result|boolean 发送结果，成功为true, 失败为false|
+|number|rp_cause RP-Cause错误码(3GPP TS 24.011), 0=成功, 1=空号, 30=未知用户, 50=未开通服务(停机)|
+|string|rp_cause_str RP-Cause描述字符串|
+|number|msg_ref 最后一段的消息参考号, 用于匹配后续的SMS_REPORT回执消息|
+|number|error_code SDK错误码(0=成功, 300=设备故障, 330=短信中心未知, 332=无网络服务, 333=网络超时, 500=未知错误)|
+|table|msg_refs 所有段的消息参考号列表, 如{10,11,12}, 短信为单段时{5}; 用于匹配每段短信的SMS_REPORT回执|
 
 **例子**
 
 ```lua
-sys.subscribe("SMS_SENT", function(result)
-    log.info("sms send result", result)
+sys.subscribe("SMS_SENT", function(result, rp_cause, rp_cause_str, msg_ref, error_code, msg_refs)
+    log.info("sms send", result, rp_cause, rp_cause_str, msg_ref, error_code)
+    if msg_refs then
+        for i, ref in ipairs(msg_refs) do
+            log.info("sms send", "段", i, "msg_ref", ref)
+        end
+    end
 end)
 
 ```
@@ -1212,6 +1222,31 @@ end)
 -- 2. 订阅系统消息
 --sys.subscribe("SMS_INC", function(phone,sms)
     log.info("sms",phone,sms)
+end)
+
+```
+
+---
+
+### SMS_REPORT
+
+短信回执(状态报告)
+
+**额外返回参数**
+
+|返回参数类型|解释|
+|-|-|
+|number|msg_ref 消息参考号, 用于匹配发送的短信|
+|number|status 状态码, 0=成功送达, 其他为失败(3GPP TS 23.040 9.2.3.15)|
+|string|status_str 状态描述, 如 "SUCCESS"/"FAILED_TEMP_*"/"FAILED_PERM_*"|
+|string|phone 接收方手机号|
+|string|discharge_time 送达/失败时间, 格式 "YY-MM-DD HH:MM:SS"|
+
+**例子**
+
+```lua
+sys.subscribe("SMS_REPORT", function(msg_ref, status, status_str, phone, discharge_time)
+    log.info("sms report", msg_ref, status, status_str, phone, discharge_time)
 end)
 
 ```

@@ -84,7 +84,7 @@ pwm.close(5)
 
 ---
 
-## pwm.capture(channel)
+## pwm.capture(channel, freq)
 
 PWM捕获
 

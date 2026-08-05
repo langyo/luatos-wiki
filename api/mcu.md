@@ -8,7 +8,7 @@
 |mcu.I2C|number|外设类型-I2C|
 |mcu.SPI|number|外设类型-SPI|
 |mcu.PWM|number|外设类型-PWM|
-|mcu.PWM|number|外设类型-CAN|
+|mcu.CAN|number|外设类型-CAN|
 |mcu.GPIO|number|外设类型-GPIO|
 |mcu.I2S|number|外设类型-I2S, 音频总线|
 |mcu.LCD|number|外设类型-LCD, LCD专用总线|

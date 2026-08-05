@@ -223,7 +223,7 @@ log.info("pm", "last power reson", pm.lastReson())
 
 |返回值类型|解释|
 |-|-|
-|boolean|处理结果,若返回成功,大概率会马上进入该休眠模式|
+|int|底层返回值,若返回0,大概率会马上进入该休眠模式|
 
 **例子**
 
@@ -387,7 +387,7 @@ IO高电平和对外输出LDO的电压控制
 
 ---
 
-## pm.wakeupPin(pin,level)
+## pm.wakeupPin(pin, level, chip)
 
 配置唤醒引脚
 

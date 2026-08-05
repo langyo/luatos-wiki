@@ -9,7 +9,7 @@
 
 ```
 
-## sms.send(phone, msg, auto_phone_fix)
+## sms.send(phone, msg, auto_phone_fix, need_report)
 
 异步发送短信
 
@@ -20,6 +20,7 @@
 |string|电话号码,必填|
 |string|短信内容,必填|
 |bool|是否自动处理电话号号码的格式,默认是按短信内容和号码格式进行自动判断, 设置为false可禁用|
+|bool|是否请求短信回执(状态报告),默认false不请求,设为true时接收方成功接收后会收到SMS_REPORT消息|
 
 **返回值**
 
@@ -29,11 +30,23 @@
 
 **例子**
 
-无
+```lua
+-- 短信号码支持2种形式
+-- +XXYYYYYYY 其中XX代表国家代码, 中国是86, 推荐使用这种
+-- YYYYYYYYY  直接填目标号码, 例如10010, 10086, 或者国内的手机号码
+log.info("sms", sms.send("+8613416121234", "Hi, LuatOS - " .. os.date()))
+
+-- 直接使用目标号码, 不做任何自动化处理. 2023.09.21新增
+log.info("sms", sms.send("85513416121234", "Hi, LuatOS - " .. os.date()), false)
+
+-- 请求短信回执, 接收方成功接收后会收到 SMS_REPORT 消息
+sms.send("+8613416121234", "Hi, LuatOS", true, true)
+
+```
 
 ---
 
-## sms.sendLong(phone, msg, auto_phone_fix).wait()
+## sms.sendLong(phone, msg, auto_phone_fix, need_report).wait()
 
 同步发送短信
 
@@ -44,6 +57,7 @@
 |string|电话号码,必填|
 |string|短信内容,必填|
 |bool|是否自动处理电话号号码的格式,默认是按短信内容和号码格式进行自动判断, 设置为false可禁用|
+|bool|是否请求短信回执(状态报告),默认false不请求,设为true时接收方成功接收后会收到SMS_REPORT消息|
 
 **返回值**
 
@@ -53,7 +67,15 @@
 
 **例子**
 
-无
+```lua
+sys.taskInit(function()
+    local str = string.rep("1234567890", 50)
+    sys.waitUntil("IP_READY")
+    -- 发送500bytes的短信
+    sms.sendLong("+8613416121234", str).wait()
+end)
+
+```
 
 ---
 
@@ -157,6 +179,7 @@ PDU短信解包
 **例子**
 
 ```lua
+-- 仅PC模拟器包含这个函数, 真机不需要这个函数
 local pdu = "0491680010F50400069110102143650008024F60"
 local phone, txt, metas = sms.unpack(pdu)
 log.info("sms unpack", phone, txt, metas and json.encode(metas) or "")
@@ -188,6 +211,38 @@ log.info("sms unpack", phone, txt, metas and json.encode(metas) or "")
 sms.debug(true)
 -- 禁用短信调试模式
 sms.debug(false)
+
+```
+
+---
+
+## sms.setReportCb(func)
+
+设置短信回执(状态报告)回调函数
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|function|回调函数, 5个参数: msg_ref, status, status_str, phone, discharge_time|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|nil|传入是函数就能成功,无返回值|
+
+**例子**
+
+```lua
+sms.setReportCb(function(msg_ref, status, status_str, phone, discharge_time)
+    -- msg_ref:        消息参考号(number), 用于匹配发送的短信
+    -- status:         状态码(number), 0=成功送达
+    -- status_str:     状态描述(string), 如 "SUCCESS"/"FAILED_TEMP_*"/"FAILED_PERM_*"
+    -- phone:          接收方手机号(string)
+    -- discharge_time: 送达/失败时间(string), 格式 "YY-MM-DD HH:MM:SS"
+    log.info("sms report", msg_ref, status, status_str, phone, discharge_time)
+end)
 
 ```
 

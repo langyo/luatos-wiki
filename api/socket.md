@@ -758,6 +758,28 @@ socket.close_all(socket.LWIP_STA)
 
 ---
 
+## socket.rx_cache(set_nums)
+
+设置/获取基于lwip协议栈的接收缓存块数量
+
+**参数**
+
+|传入值类型|解释|
+|-|-|
+|int|设置缓存块的数量，范围6~48|
+
+**返回值**
+
+|返回值类型|解释|
+|-|-|
+|int|当前接收缓存块数量|
+
+**例子**
+
+无
+
+---
+
 ## socket.sntp(sntp_server, adapter)
 
 sntp时间同步

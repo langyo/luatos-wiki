@@ -85,7 +85,13 @@ local ok = netdrv.setup(socket.LWIP_USER0, netdrv.OPENVPN, {
 
 **例子**
 
-无
+```lua
+-- 注意, 并非所有网络设备都支持关闭DHCP, 例如4G Cat.1自带的netdrv就不支持关闭DHCP
+-- name参数于2025.9.23添加
+netdrv.dhcp(socket.LWIP_ETH, true)
+netdrv.dhcp(socket.LWIP_ETH, true, "LuatOS")
+
+```
 
 ---
 

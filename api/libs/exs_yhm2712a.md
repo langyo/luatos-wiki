@@ -63,7 +63,6 @@ end
 4、获取充电系统状态信息
 必须在task中运行，最大阻塞时间(包括超时重试时间)大概为20s。
 该函数用于获取当前充电系统的完整状态，包括电池电压、充电阶段、充电状态、电池在位状态、充电器在位状态以及IC过热状态等信息。
-其中充电器是否在位，中断触发，触发回调事件为CHARGER_STATE_EVENT，附带的参数 true表示充电器在位，false表示充电器不在位。
 @api exs_yhm2712a.status()
 @return table 状态信息表
 {
@@ -108,7 +107,7 @@ end
 exs_yhm2712a.on(exs_yhm2712a_callback)
 
 6、进入船运模式
-必须在task中运行，最大阻塞时间大概为2200ms, 阻塞主要由sys.wait(2000)和sys.waitUntil("YHM27XX_REG", 500)产生。
+必须在task中运行，最大阻塞时间大概为2500ms, 阻塞主要由sys.wait(2000)和sys.waitUntil("YHM27XX_REG", 500)产生。
 在船运模式下，电池FET断开，设备仅消耗约150nA电流，适用于产品运输和存储。
 @api exs_yhm2712a.ship_mode()
 @return boolean: true=成功, false=失败
@@ -227,7 +226,7 @@ exs_yhm2712a.stop() -- 停止充电
 
 ## exs_yhm2712a.ship_mode()
 
-进入船运模式(必须在task中运行，最大阻塞时间大概为2200ms, 阻塞主要由sys.waitUntil("YHM27XX_REG", 500)和sys.wait(2000)产生。)
+进入船运模式(必须在task中运行，最大阻塞时间大概为2500ms, 阻塞主要由sys.waitUntil("YHM27XX_REG", 500)和sys.wait(2000)产生。)
 
 **参数**
 
@@ -250,7 +249,7 @@ exs_yhm2712a.ship_mode() -- 进入船运模式
 
 ## exs_yhm2712a.status()
 
-获取充电系统状态信息(必须在task中运行，最大阻塞时间(包括超时重试时间)大概为20s)。该函数用于获取当前充电系统的完整状态，包括电池电压、充电阶段、充电状态、电池在位状态、充电器在位状态以及IC过热状态等信息。其中充电器是否在位，中断触发，触发回调事件为CHARGER_STATE_EVENT，附带的参数 true表示充电器在位，false表示充电器不在位。
+获取充电系统状态信息(必须在task中运行，最大阻塞时间(包括超时重试时间)大概为20s)。该函数用于获取当前充电系统的完整状态，包括电池电压、充电阶段、充电状态、电池在位状态、充电器在位状态以及IC过热状态等信息。
 
 **参数**
 

@@ -111,7 +111,7 @@ gpio.setup(18, 0, nil, nil, 4)
 |-|-|
 |int|pin GPIO编号,必须是数值|
 |int|level 需要捕获的电平, 可以是 高电平gpio.HIGH, 低电平gpio.LOW, 或者直接写数值1或0，即管脚上正常时间处于level的反，捕获设定的level持续时间|
-|function|func 完成捕获后的回调函数，仅一个参数，参数为捕获到的时间长度number型数值，单位us|
+|function|func 完成捕获后的回调函数，有2个参数，第1个为捕获到的时间长度整数部分(us)，第2个为余数部分|
 
 **返回值**
 
@@ -123,7 +123,7 @@ gpio.setup(18, 0, nil, nil, 4)
 
 ```lua
 -- 捕获GPIO7为高电平的持续时间
-gpio.caplevel(7,1,function(us_int) print(us_float) end)
+gpio.caplevel(7,1,function(us_int, us_float) print(us_int, us_float) end)
 
 ```
 
@@ -247,7 +247,7 @@ gpio.setDefaultPull(1)
 
 |传入值类型|解释|
 |-|-|
-|int|管脚的GPIO号|
+|int|pin 管脚的GPIO号|
 
 **返回值**
 
@@ -278,8 +278,8 @@ end, 500)
 
 |传入值类型|解释|
 |-|-|
-|int|gpio号|
-|int/string|数值或者字符串.|
+|int|pin gpio号|
+|int/string|level 数值或者字符串.|
 |int|len 长度 单位是bit, 高位在前.|
 |int|delay 高低电平延迟时间, 用的软件while来delay, 这里的delay值是while循环次数, 具体delay时间必须实际调试才知道|
 
@@ -309,9 +309,9 @@ gpio.pulse(1,0xA9, 8, 0)
 
 |传入值类型|解释|
 |-|-|
-|int|gpio号, 0~127, 与硬件相关|
-|int|防抖时长,单位毫秒, 最大 65555 ms, 设置为0则关闭|
-|int|模式, 0冷却模式, 1延时模式. 默认是0|
+|int|pin gpio号, 0~127, 与硬件相关|
+|int|ms 防抖时长,单位毫秒, 最大 65555 ms, 设置为0则关闭|
+|int|mode 模式, 0冷却模式, 1延时模式. 默认是0|
 
 **返回值**
 

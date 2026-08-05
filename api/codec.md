@@ -12,6 +12,9 @@
 |codec.ALAW|number|G711 A-law格式|
 |codec.OPUS|number|OPUS格式|
 |codec.OGG_OPUS|number|OGG封装OPUS格式|
+|codec.SPEEX_NB|number|Speex窄带格式(8kHz)|
+|codec.SPEEX_WB|number|Speex宽带格式(16kHz)|
+|codec.SPEEX_UWB|number|Speex超宽带格式(32kHz)|
 |codec.VDDA_3V3|number|codec 电压: 3.3V|
 |codec.VDDA_1V8|number|codec 电压: 1.8V|
 

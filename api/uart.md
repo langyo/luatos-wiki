@@ -19,7 +19,7 @@
 |uart.DEBUG|number|开启调试功能|
 
 
-## uart.setup(id, baud_rate, data_bits, stop_bits, partiy, bit_order, buff_size, rs485_gpio, rs485_level, rs485_delay, debug_enable, error_drop)
+## uart.setup(id, baud_rate, data_bits, stop_bits, parity, bit_order, buff_size, rs485_gpio, rs485_level, rs485_delay, debug_enable, error_drop)
 
 配置串口参数
 
@@ -320,7 +320,7 @@ uart.tx(1, buf)
 
 ---
 
-## uart.createSoft(tx_pin, tx_hwtimer_id, rx_pin, rx_hwtimer_id, adjust_period)
+## uart.createSoft(tx_pin, tx_hwtimer_id, rx_pin, rx_hwtimer_id, tx_adjust_period, rx_adjust_period)
 
 设置软件uart的硬件配置，只有支持硬件定时器的SOC才能使用，目前只能设置一个，波特率根据平台的软硬件配置有不同的极限，建议9600，接收缓存不超过65535，不支持MSB，支持485自动控制。后续仍要setup操作
 
