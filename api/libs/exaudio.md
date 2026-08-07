@@ -5,6 +5,11 @@
 ```lua
 
 -- 版本更新说明
+-- 版本号：202608061100
+-- 1、更新时间：2026-08-06 11:00
+--    新音频框架play_start()播放前主动exaudio.pm(audio.RESUME)恢复ES8311工作模式
+--    新音频框架play_stop()手动停止时exaudio.pm(audio.SHUTDOWN)下电ES8311省电
+--    同时exaudio.vol()同步更新voice_vol变量，修复CC铃声无法设置问题
 -- 版本号：202608031526
 -- 1、更新时间：2026-08-03 15:26
 --    play_start()文件播放新增文件头损坏预检功能

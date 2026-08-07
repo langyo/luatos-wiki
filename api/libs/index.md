@@ -20,6 +20,7 @@ exremotefile
 exs_adxl34x
 exs_da267
 exs_ns2520
+exs_opt3001
 exs_yhm2712a
 exsip
 exsipclient

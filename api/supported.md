@@ -20,6 +20,7 @@
 |[dac](dac.md)|`数模转换`|
 |[disp](disp.md)|`disp库(已废弃)`|
 |[eink](eink.md)|`墨水屏操作库`|
+|[epd](epd.md)|`墨水屏操作库`|
 |[ercoap](ercoap.md)|`新的Coap协议解析库`|
 |[errDump](errDump.md)|`错误上报`|
 |[fastlz](fastlz.md)|`FastLZ压缩`|

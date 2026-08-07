@@ -23,6 +23,7 @@ crypto
 dac
 disp
 eink
+epd
 ercoap
 errDump
 fastlz
